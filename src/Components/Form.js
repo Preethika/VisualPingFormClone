@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Paper, InputBase, Divider, Button, IconButton, TextareaAutosize, TextField, Accordion, AccordionSummary, AccordionDetails, Typography, Radio, RadioGroup, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Select, Container, InputAdornment, OutlinedInput } from '@material-ui/core';
 import { MenuIcon, SearchIcon, DirectionsIcon, CircularProgress } from '@material-ui/icons';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
@@ -23,7 +23,14 @@ function Form() {
             setEmail({ value: _email, error: 'Not a valid email' })
         }
     }
+    useEffect(() => {
+        console.log('Runs at component mounting');
+    }, []);
 
+    useEffect(() => {
+        console.log('Runs when email or key is changed');
+    }, [email, key]);
+    
     return (
         <>
             <br />
@@ -149,15 +156,15 @@ function Form() {
                     <br /><br />
                     <Paper>
                         <ul className="tabs">
-                            <li onClick={(e) => this.updateKey(e, 1)}>
+                            <li onClick={(e) => updateKey(e, 1)}>
                                 {key === 1 ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                 <span>Perform actions </span>
                             </li>
-                            <li onClick={(e) => this.updateKey(e, 2)}>
+                            <li onClick={(e) => updateKey(e, 2)}>
                                 {key === 2 ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                 <span>Keyword alert</span>
                             </li>
-                            <li onClick={(e) => this.updateKey(e, 3)}>
+                            <li onClick={(e) => updateKey(e, 3)}>
                                 {key === 3 ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                 <span>Browser adjustment</span>
                             </li>
